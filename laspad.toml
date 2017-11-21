@@ -1,0 +1,7 @@
+
+[master]
+name            = "Shadowstep Fade"
+tags            = ["Gameplay modification", "Must be run on server"]
+autodescription = true
+description     = "README.md"
+preview         = "preview.png"
