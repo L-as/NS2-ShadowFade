@@ -46,3 +46,14 @@ function Fade:OnInitialized()
 
 	self.landedAfterBlink  = true
 end
+
+function Fade:OnUpdateAnimationInput(modelMixin)
+	if self:GetHasMetabolizeAnimationDelay() then
+		local weapon = self:GetActiveWeapon()
+		if weapon ~= nil and weapon:GetMapName() == Metabolize.kMapName then
+			weapon:OnUpdateAnimationInput(modelMixin)
+		end
+	else
+		Alien.OnUpdateAnimationInput(self, modelMixin)
+	end
+end
