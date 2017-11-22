@@ -27,7 +27,7 @@ local function PerformBlink(self)
 end
 
 function Blink:OnSecondaryAttack(player)
-	local hasEnoughEnergy = player:GetEnergy() > self:GetSecondaryEnergyCost()
+	local hasEnoughEnergy = player:GetEnergy() >= self:GetSecondaryEnergyCost()
 	if hasEnoughEnergy and player:GetBlinkAllowed() then
 		player.etherealEndTime = Shared.GetTime()
 	end
