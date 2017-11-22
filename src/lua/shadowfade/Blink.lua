@@ -4,7 +4,8 @@ function Blink:OnInitialized()
 	Ability.OnInitialized(self)
 end
 
-local kEtherealForce = 13.5
+local kEtherealForce    = 13.5
+local kEtherealCooldown = 0.05
 
 -- Why this particular value?
 -- Without adrenaline, you will be able to do exactly one step,
@@ -28,7 +29,11 @@ end
 
 function Blink:OnSecondaryAttack(player)
 	local hasEnoughEnergy = player:GetEnergy() >= self:GetSecondaryEnergyCost()
-	if hasEnoughEnergy and player:GetBlinkAllowed() then
+	if (
+		player:GetEnergy() >= self:GetSecondaryEnergyCost() and
+		player:GetBlinkAllowed() and
+		Shared.GetTime() - player.etherealEndTime >= kEtherealCooldown
+	) then
 		player:DeductAbilityEnergy(self:GetSecondaryEnergyCost())
 		PerformBlink(player)
 	end
