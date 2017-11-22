@@ -19,7 +19,7 @@ end
 
 local function PerformBlink(self)
 	self:DeductAbilityEnergy(self:GetSecondaryEnergyCost())
-	local celerityLevel = GetHasCelerityUpgrade(player) and GetSpurLevel(player:GetTeamNumber()) or 0
+	local celerityLevel = GetHasCelerityUpgrade(self) and GetSpurLevel(player:GetTeamNumber()) or 0
 
 	self:SetVelocity(
 		self:GetVelocity() + self:GetViewCords().zAxis * (kEtherealForce + celerityLevel * 1.5)
