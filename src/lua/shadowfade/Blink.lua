@@ -22,7 +22,7 @@ local function PerformBlink(self)
 	local celerityLevel = GetHasCelerityUpgrade(self) and GetSpurLevel(player:GetTeamNumber()) or 0
 
 	self:SetVelocity(
-		self:GetVelocity() + self:GetViewCords().zAxis * (kEtherealForce + celerityLevel * 1.5)
+		self:GetVelocity() + self:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 1.5)
 	)
 end
 
