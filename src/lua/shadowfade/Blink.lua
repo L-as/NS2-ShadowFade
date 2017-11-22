@@ -22,8 +22,11 @@ local function PerformBlink(self)
 	self.etherealEndTime = Shared.GetTime()
 	local celerityLevel = GetHasCelerityUpgrade(self) and GetSpurLevel(player:GetTeamNumber()) or 0
 
+	local dir = self:GetViewCoords().zAxis
+
+	self:TriggerEffects("shadow_step", {effecthostcoords = Coords.GetLookIn(self:GetOrigin(), dir)})
 	self:SetVelocity(
-		self:GetVelocity() + self:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 1.5)
+		self:GetVelocity() + dir * (kEtherealForce + celerityLevel * 1.5)
 	)
 end
 
