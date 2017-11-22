@@ -30,3 +30,19 @@ end
 function Fade:GetGroundFriction()
 	return math.min(Shared.GetTime() - self.etherealEndTime, kBlinkDuration) / kBlinkDuration * 9
 end
+
+local old = Fade.OnInitialized
+function Fade:OnInitialized()
+	old(self)
+
+	self.isBlinking		   = false
+	self.shadowStepping    = false
+	self.ethereal		   = false
+
+	self.timeShadowStep    = -1000
+	self.etherealStartTime = -1000
+	self.etherealEndTime   = -1000
+	self.timeOfLastPhase   = -1000
+
+	self.landedAfterBlink  = true
+end
