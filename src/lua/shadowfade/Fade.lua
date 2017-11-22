@@ -17,7 +17,15 @@ for _, v in ipairs {
 	gModClassMap.Fade.networkVars[v] = nil
 end
 
-local kBlinkDuration = 2
+local kBlinkDuration                 = 2
+local kGroundFriction                = 9
+local kGroundFrictionCelerityScaling = .5
+local kAirFriction                   = .17
+local kAirFrictionCelerityScaling    = .01
+
+local function GetCelerityLevel(self)
+	return GetHasCelerityUpgrade(self) and GetSpurLevel(self:GetTeamNumber()) or 0
+end
 
 function Fade:GetIsBlinking()
 	return false
@@ -28,7 +36,11 @@ function Fade:GetCanJump()
 end
 
 function Fade:GetGroundFriction()
-	return math.min(Shared.GetTime() - self.etherealEndTime, kBlinkDuration) / kBlinkDuration * 9
+	return math.min(Shared.GetTime() - self.etherealEndTime, kBlinkDuration) / kBlinkDuration * kGroundFriction - GetCelerityLevel(self) * kGroundFrictionCelerityScaling
+end
+
+function Fade:GetAirFriction()
+	return math.min(Shared.GetTime() - self.etherealEndTime, kBlinkDuration) / kBlinkDuration * kAirFriction    - GetCelerityLevel(self) * kAirFrictionCelerityScaling
 end
 
 local old = Fade.OnInitialized
