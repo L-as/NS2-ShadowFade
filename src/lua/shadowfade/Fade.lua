@@ -28,5 +28,5 @@ function Fade:GetCanJump()
 end
 
 function Fade:GetGroundFriction()
-    return math.min(Shared.GetTime() - self.etherealEndTime, kBlinkDuration) / kBlinkDuration * 9
+	return math.min(Shared.GetTime() - self.etherealEndTime, kBlinkDuration) / kBlinkDuration * 9
 end
