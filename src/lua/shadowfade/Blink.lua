@@ -5,7 +5,7 @@ function Blink:OnInitialized()
 end
 
 local kEtherealForce    = 13.5
-local kEtherealCooldown = 0.05
+local kEtherealCooldown = 0.08
 
 -- Why this particular value?
 -- Without adrenaline, you will be able to do exactly one step,
