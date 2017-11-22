@@ -18,7 +18,7 @@ function Blink:GetSecondaryEnergyCost()
 end
 
 local function PerformBlink(self)
-	self:DeductAbilityEnergy(self:GetSecondaryEnergyCost())
+	self.etherealEndTime = Shared.GetTime()
 	local celerityLevel = GetHasCelerityUpgrade(self) and GetSpurLevel(player:GetTeamNumber()) or 0
 
 	self:SetVelocity(
@@ -29,10 +29,9 @@ end
 function Blink:OnSecondaryAttack(player)
 	local hasEnoughEnergy = player:GetEnergy() >= self:GetSecondaryEnergyCost()
 	if hasEnoughEnergy and player:GetBlinkAllowed() then
-		player.etherealEndTime = Shared.GetTime()
+		player:DeductAbilityEnergy(self:GetSecondaryEnergyCost())
+		PerformBlink(player)
 	end
-
-	PerformBlink(player)
 
 	Ability.OnSecondaryAttack(self, player)
 end
