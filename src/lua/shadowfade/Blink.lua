@@ -22,9 +22,13 @@ local function PerformBlink(self)
 	self.etherealEndTime = Shared.GetTime()
 	local celerityLevel = GetHasCelerityUpgrade(self) and GetSpurLevel(player:GetTeamNumber()) or 0
 
+	local force = .7 * self:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 1.5)
+
 	self:SetVelocity(
-		self:GetVelocity() + self:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 1.5)
+		self:GetVelocity() + force
 	)
+
+	self:PerformMovement(force / 2, 3)
 end
 
 function Blink:OnSecondaryAttack(player)
