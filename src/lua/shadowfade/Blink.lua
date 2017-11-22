@@ -13,12 +13,12 @@ local kEtherealForce = 13.5
 --
 -- If you use adrenaline, however, you will be able to
 -- do it **twice** with no pause inbetween.
-function Blink.GetSecondaryEnergyCost()
+function Blink:GetSecondaryEnergyCost()
 	return 60 -- original for blink initiation is 14
 end
 
 local function PerformBlink(self)
-	self:DeductAbilityEnergy(kStartBlinkEnergyCost)
+	self:DeductAbilityEnergy(self:GetSecondaryEnergyCost())
 	local celerityLevel = GetHasCelerityUpgrade(player) and GetSpurLevel(player:GetTeamNumber()) or 0
 
 	self:SetVelocity(
