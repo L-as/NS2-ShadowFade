@@ -18,9 +18,11 @@ local function PerformBlink(self, player)
 	local dir = self:GetViewCoords().zAxis
 
 	self:TriggerEffects("shadow_step", {effecthostcoords = Coords.GetLookIn(self:GetOrigin(), dir)})
-	self:SetVelocity(
-		self:GetVelocity() + dir * (kEtherealForce + celerityLevel * 1.5)
-	)
+	if not Client then
+		self:SetVelocity(
+			self:GetVelocity() + dir * (kEtherealForce + celerityLevel * 1.5)
+		)
+	end
 end
 
 function Blink:OnSecondaryAttack(player)
