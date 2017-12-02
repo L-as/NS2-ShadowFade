@@ -7,15 +7,8 @@ end
 local kEtherealForce    = 13.5
 local kEtherealCooldown = 0.08
 
--- Why this particular value?
--- Without adrenaline, you will be able to do exactly one step,
--- then you will have to wait to regain 10 energy.
--- After that, you will be left with no energy at all.
---
--- If you use adrenaline, however, you will be able to
--- do it **twice** with no pause inbetween.
 function Blink:GetSecondaryEnergyCost()
-	return 60 -- original for blink initiation is 14
+	return 20 -- original for blink is `14 + 32 * seconds`
 end
 
 local function PerformBlink(self, player)
